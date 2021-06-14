@@ -15,7 +15,6 @@ When  the teacher submit one student grade
 Then an email notifying the student that a grade has been sent isn’t sent
 And the student no longer receive emails from the system in this day
 
-
 Scenario: Possível calcular a DRMG
 Given that the teacher has submitted the grades of at least two students
 And “Joãozinho”’s “email notifications” are enabled
@@ -47,3 +46,10 @@ And I see that the “email notifications” are disabled
 When I select the “email notifications” 
 Then a message saying that email notifications are enabled is shown
 And the student can receive emails from the system
+
+Scenario: Envio de email com atualização de notas do aluno (Indicando diferenças em relação à média geral)
+Given that the student hasn't received a grade updates email today
+And I see that the student “email notifications” are enabled
+When A specific hour of the day set by the teacher is set
+Then an email notifying the student of his grade updates is sent
+And the email also includes the overrall average
